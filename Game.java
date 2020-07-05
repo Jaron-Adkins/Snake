@@ -2,6 +2,11 @@ package Snake_Game;
 import java.util.*;
 import java.io.*;
 import java.math.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.plaf.basic.BasicComboBoxUI.KeyHandler;
+
+
 
 public class Game {
 
@@ -13,6 +18,10 @@ public class Game {
     public int len;
     public ArrayList<Pos> prePos;
     public boolean food_Present;
+    keyHandler mh=new keyHandler();
+	  
+
+     
     
     //constructor
     public Game(){
@@ -39,7 +48,7 @@ public class Game {
         gameMap[food.getX()][food.getY()]=2;
         //new head pos
         prePos.add(new Pos(head.getX(),head.getY()));
-        gameMap[head.getX()][head.getY()]=1; //head position    
+        gameMap[head.getX()][head.getY()]=1; //head position  
     }
     
     public void preview() {
@@ -122,10 +131,33 @@ public class Game {
     	else return false;
     }
     
+    public int[][] giveMap(){
+        return gameMap;
+    } 
+
     public void randFood() {
     	gameMap[food.getX()][food.getY()]=0;
     	 food.change(((int)(Math.random()*10)), (int)(Math.random()*10));
     	 gameMap[food.getX()][food.getY()]=2;
     }
 
+    public void changeDir(String a){
+        switch (a) {
+            case "left":
+                dir = directions.left;
+                break;
+            case "up":
+                dir = directions.up;
+                break;
+            case "right":
+                dir = directions.right;
+                break;
+            case "down":
+                dir = directions.down;
+                break;
+        }
+
+    }
 }
+
+
