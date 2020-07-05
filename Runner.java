@@ -18,5 +18,7 @@ public class Runner {
          e.printStackTrace();
       }
     }
+    display.gameOver = true;
+    display.repaint();
   }
 }
