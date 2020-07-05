@@ -1,8 +1,4 @@
-/*
-can't set background color
-To create a "real" 500x500 screensize, the setSize needs to be (514, 538) and anything drawen must be offset by (7, 31).
-*/
-package Snake;
+package Snake_Game;
 
 import javax.swing.JFrame;
 import java.awt.Color;
@@ -28,8 +24,12 @@ public class Display extends JFrame {
   public void paint(Graphics g){
     g.fillRect(0, 0, 600, 600);
     g.setColor(Color.GREEN);
-    for (int i = 0; i < grid.length; i++) {
-      g.fillRect(grid[i][0] * snakeSize + xOffSet, grid[i][1] * snakeSize + yOffSet, 50, 50);
+    for(int i = 0; i < grid.length; i++) {
+      for(int j = 0; j < grid[i].length; j++) {//grid[x][y]
+        if(grid[i][j] == 0) continue;
+        else if(grid[i][j] == 1) g.fillRect(j * snakeSize + xOffSet, i * snakeSize + yOffSet, 50, 50);
+        else g.drawOval(j * snakeSize + xOffSet, i * snakeSize + yOffSet, 50, 50);
+      }
     }
     g.setColor(Color.WHITE);
     g.drawString("Score: " + grid.length, 2 + xOffSet, 16 + yOffSet);
