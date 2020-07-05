@@ -15,7 +15,7 @@ public class Display extends JFrame {
   int yOffSet = 31;
   int snakeSize = 50;
   int[][] grid;
-  boolean gameOver = true;
+  boolean gameOver = false;
   public Display() {
     super("Snake");
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -23,7 +23,7 @@ public class Display extends JFrame {
     setResizable(false);
     setLocationRelativeTo(null);
     setVisible(true);
-    setFont(new Font("Courier", Font.BOLD, 75));
+    setFont(new Font("Courier", Font.BOLD, 16));
   }
   public void paint(Graphics g){
     g.fillRect(0, 0, 600, 600);
@@ -31,9 +31,11 @@ public class Display extends JFrame {
     for (int i = 0; i < grid.length; i++) {
       g.fillRect(grid[i][0] * snakeSize + xOffSet, grid[i][1] * snakeSize + yOffSet, 50, 50);
     }
+    g.setColor(Color.WHITE);
+    g.drawString("Score: " + grid.length, 2 + xOffSet, 16 + yOffSet);
     if(gameOver) {
       g.setColor(Color.RED);
-      g.drawString("Game Over", 60, 250);
+      g.drawString("Game Over", 210, 250 + yOffSet);
     }
   }
 }
